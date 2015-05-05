@@ -12,8 +12,7 @@
 
 <input type="button" value="I just want to see the results" class="btn btn-primary" onclick="location.href='survey_result.php'" />
 
-<div class="page-header">
-</div>
+<hr />
 
 <form method="post" action="survey_result.php">
 
