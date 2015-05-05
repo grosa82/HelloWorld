@@ -1,10 +1,6 @@
 <?php
 	include "header.php";
 
-	#unset($_SESSION["vote"]);
-
-
-
 	if (!isset($_SESSION["vote"]) && isset($_POST["smartPhone"]))
 	{
 		$smartPhone = $_POST["smartPhone"];
@@ -87,7 +83,7 @@
 	$listSmartPhones = array("Blackberry" => 0, "Galaxy" => 0, "HTC One" => 0, "iPhone" => 0, "Nexus" => 0, "Sony Xperia" => 0);
 	$listLaptops = array("Apple" => 0, "Asus" => 0, "Dell" => 0, "HP" => 0, "Lenovo" => 0, "Toshiba" => 0);
 	$listInternet = array("01 - 05" => 0, "05 - 10" => 0, "10 - 20" => 0, "20 - 50" => 0, "50+" => 0);
-	$listMajor = array("Computer Science" => 0, "Computer Engineering" => 0, "Eletrical Engineering" => 0, "Software Engineering" => 0, "Another major with a small salary" => 0);
+	$listMajor = array("Computer Science" => 0, "Computer Engineering" => 0, "Eletrical Engineering" => 0, "Software Engineering" => 0, "Other" => 0);
 
 	$handle = fopen("data.txt", "r");
 	if ($handle) {

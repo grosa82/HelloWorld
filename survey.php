@@ -70,7 +70,7 @@
 		<input type="radio" name="major" value="Computer Engineering">&nbsp;&nbsp;Computer Engineering<br />
 		<input type="radio" name="major" value="Eletrical Engineering">&nbsp;&nbsp;Eletrical Engineering<br />
 		<input type="radio" name="major" value="Software Engineering">&nbsp;&nbsp;Software Engineering<br />
-		<input type="radio" name="major" value="Another major with a small salary">&nbsp;&nbsp;Another major with a small salary<br />
+		<input type="radio" name="major" value="Other">&nbsp;&nbsp;Other<br />
     </div>
 </div>
 
