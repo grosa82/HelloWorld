@@ -1,0 +1,7 @@
+Blackberry|01 - 05|Apple|Computer Science
+iPhone|01 - 05|Apple|Computer Engineering
+iPhone|01 - 05|Apple|Computer Engineering
+iPhone|01 - 05|Apple|Computer Engineering
+iPhone|20 - 50|Apple|Computer Science
+Galaxy|50+|Lenovo|Computer Science
+Galaxy|50+|Dell|Another major with a small salary
