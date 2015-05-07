@@ -1,6 +1,6 @@
 <?php 
 	include "header.php";
-	if (isset($_SESSION["vote"]) || isset($_COOKIE["vote"]))
+	if (isset($_COOKIE["vote"]))
 	{
 		header("Location: survey_result.php");
  	} 
