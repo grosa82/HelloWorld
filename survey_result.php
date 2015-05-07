@@ -1,7 +1,7 @@
 <?php
 	include "header.php";
 
-	if (!isset($_SESSION["vote"]) && isset($_POST["smartPhone"]))
+	if ((!isset($_SESSION["vote"]) && isset($_POST["smartPhone"])) || (!isset($_COOKIE["vote"]) && isset($_POST["smartPhone"])))
 	{
 		$smartPhone = $_POST["smartPhone"];
 		$internet = $_POST["internet"];
@@ -15,10 +15,12 @@
 		fclose($myfile);
 
 		$_SESSION["vote"] = true;
+		setcookie("vote", "true", time() + 2000);
 
 		echo "<h3><span class='label label-success'>Your vote was computed successfully</span></h3>";
 	}
-	else if (!isset($_POST["smartPhone"])){
+	else if (!isset($_POST["smartPhone"]) && (isset($_SESSION["vote"]) || isset($_COOKIE["vote"])))
+	{
 		echo "<h3><span class='label label-info'>Check the results below</span></h3>";
 	}
 	else
