@@ -15,7 +15,7 @@
 		fclose($myfile);
 
 		$_SESSION["vote"] = true;
-		setcookie("vote", "true", time() + 2000);
+		setcookie("vote", "true", time() + 31556926);
 
 		echo "<h3><span class='label label-success'>Your vote was computed successfully</span></h3>";
 	}
