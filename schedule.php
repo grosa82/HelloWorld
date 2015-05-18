@@ -21,6 +21,55 @@
 						<input type="text" name="name" />
 					</td>
 				</tr>
+				<tr>
+					<td>
+						Course code
+					</td>
+					<td>
+						<input type="text" name="code" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Course section
+					</td>
+					<td>
+						<input type="text" name="section" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Time begin
+					</td>
+					<td>
+						<input type="text" name="hour_begin" />h&nbsp;&nbsp;<input type="text" name="minute_begin" />m
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Time end
+					</td>
+					<td>
+						<input type="text" name="hour_end" />h&nbsp;&nbsp;<input type="text" name="minute_end" />m
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Frequency
+					</td>
+					<td>
+						<input type="checkbox" name="weekday[]" value="0" /> Sunday<br />
+						<input type="checkbox" name="weekday[]" value="1" /> Monday<br />
+						<input type="checkbox" name="weekday[]" value="2" /> Tuesday<br />
+						<input type="checkbox" name="weekday[]" value="3" /> Wednesday<br />
+						<input type="checkbox" name="weekday[]" value="4" /> Thursday<br />
+						<input type="checkbox" name="weekday[]" value="5" /> Friday<br />
+						<input type="checkbox" name="weekday[]" value="6" /> Saturday<br />
+					</td>
+				</tr>
+				<td colspan="2">
+					<button type="submit">Add course</button>
+				</td>
 			</tbody>
 		</table>	
 	</form>
