@@ -44,6 +44,16 @@
 
 				if ($conn->query($sql) === TRUE) {
 		    		echo "<h2><span class='label label-success'>Course added successfully</span></h2>";
+
+		    		unset($name);
+		    		unset($section);
+		    		unset($code);
+		    		unset($hour_begin);
+		    		unset($minute_begin);
+		    		unset($hour_end);
+		    		unset($minute_end);
+		    		unset($weekday);
+
 				} else {
 					echo "<h2><span class='label label-danger'>Error: " . $sql . "<br>" . $conn->error . "</span></h2>";
 				}
@@ -187,6 +197,13 @@
 		</table>
 		<input type="hidden" name="posted" value="1" />	
 	</form>
+</div>
+
+<div class="page-header">
+	<h2>My Courses</h2>
+</div>
+
+<div class="row">
 </div>
 
 <div class="page-header">
