@@ -19,8 +19,20 @@
 	$result = $conn->query($sql);
 ?>
 
-<table border="1">
-<tbody>
+<div class="page-header">
+    <h1>Users</h1>
+</div>
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
 <?php
 	if ($result->num_rows > 0) {
 	    // output data of each row
@@ -32,8 +44,10 @@
 	}
 	$conn->close();
 ?>
-</tbody>
-</table> 
+        </tbody>
+    </table>
+</div>
+
 <?php
 	include "footer.php";
 ?>
