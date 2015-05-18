@@ -19,21 +19,42 @@
 		$hour_end = $_POST["hour_end"];
 		$minute_end = $_POST["minute_end"];
 		$weekday = $_POST["weekday"];
-		$weekday_val = implode("", $weekday);
+		
 
-		include "open_connection.php";
-
-		$sql = "insert into course (code, id_user, name, section, time_begin,"
-			." time_end, weekday) values ('$code', '$user_id', '$name', '$section',"
-			." '$hour_begin:$minute_begin', '$hour_end:$minute_end', '$weekday_val')";
-
-		if ($conn->query($sql) === TRUE) {
-    		echo "New record created successfully";
-		} else {
-    		echo "Error: " . $sql . "<br>" . $conn->error;
+		if (!isset($name) || !isset($code) || !isset($section) ||
+			!isset($hour_begin) || !isset($minute_begin) || !isset($hour_end) ||
+			!isset($minute_end) || !isset($weekday))
+		{
+			echo "<h2><span class='label label-danger'>All the fields are required</span></h2>";
 		}
+		else
+		{
+			// check if end time is greater than begin time
+			$begin_time = "$hour_begin:$minute_begin:00";
+			$end_time = "$hour_end:$minute_end:00";
 
-		include "close_connection.php";
+			if (strtotime($end_time) > strtotime($begin_time)) 
+			{
+	  			$weekday_val = implode("", $weekday);
+				include "open_connection.php";
+
+				$sql = "insert into course (code, id_user, name, section, time_begin,"
+					." time_end, weekday) values ('$code', '$user_id', '$name', '$section',"
+					." '$begin_time', '$end_time', '$weekday_val')";
+
+				if ($conn->query($sql) === TRUE) {
+		    		echo "<h2><span class='label label-success'>Course added successfully</span></h2>";
+				} else {
+					echo "<h2><span class='label label-danger'>Error: " . $sql . "<br>" . $conn->error . "</span></h2>";
+				}
+
+				include "close_connection.php";	
+			}
+			else
+			{
+				echo "<h2><span class='label label-danger'>End time must be greater than begin time</span></h2>";
+			}
+		}
 	}
 ?>
 
@@ -52,7 +73,7 @@
 						Course name
 					</td>
 					<td>
-						<input type="text" name="name" />
+						<input type="text" name="name" value="<?php echo "$name" ?>" />
 					</td>
 				</tr>
 				<tr>
@@ -60,7 +81,7 @@
 						Course code
 					</td>
 					<td>
-						<input type="text" name="code" />
+						<input type="text" name="code" value="<?php echo "$code" ?>" />
 					</td>
 				</tr>
 				<tr>
@@ -68,7 +89,7 @@
 						Course section
 					</td>
 					<td>
-						<input type="text" name="section" />
+						<input type="text" name="section" value="<?php echo "$section" ?>" />
 					</td>
 				</tr>
 				<tr>
