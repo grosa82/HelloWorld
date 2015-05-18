@@ -1,6 +1,40 @@
 <?php
 	include "header.php";
 	$color = array("#00A0B1", "#2E8DEF", "#A700AE", "#643EBF", "#BF1E4B", "#DC572E", "#00A600", "#0A5BC4");
+
+	// get user id
+	$user_id = $SESSION["id_user"];
+
+	if (!isset($user_id))
+		$user_id = 1;
+
+	// process the form
+	if (isset($_POST["posted"]))
+	{
+		$name = $_POST["name"];
+		$code = $_POST["code"];
+		$section = $_POST["section"];
+		$hour_begin = $_POST["hour_begin"];
+		$minute_begin = $_POST["minute_begin"];
+		$hour_end = $_POST["hour_end"];
+		$minute_end = $_POST["minute_end"];
+		$weekday = $_POST["weekday"];
+		$weekday_val = implode("", $weekday);
+
+		include "open_connection.php";
+
+		$sql = "insert into course (code, id_user, name, section, time_begin,"
+			." time_end, weekday) values ('$code', '$user_id', '$name', '$section',"
+			." '$hour_begin:$minute_begin', '$hour_end:$minute_end', '$weekday_val')";
+
+		if ($conn->query($sql) === TRUE) {
+    		echo "New record created successfully";
+		} else {
+    		echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+
+		include "close_connection.php";
+	}
 ?>
 
 <link rel="stylesheet" href="schedule.css" />
@@ -10,7 +44,7 @@
 </div>
 
 <div class="row">
-	<form action="schedule.cpp" method="post">
+	<form action="schedule.php" method="post">
 		<table>
 			<tbody>
 				<tr>
@@ -71,7 +105,8 @@
 					<button type="submit">Add course</button>
 				</td>
 			</tbody>
-		</table>	
+		</table>
+		<input type="hidden" name="posted" value="1" />	
 	</form>
 </div>
 
