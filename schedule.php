@@ -98,9 +98,7 @@
 							<?php
 								for ($i = 0; $i < 60; $i++)
 								{
-									$val = "";
-									$option = "";
-
+									$val = "$i";
 									if ($i < 10)
 										$val = "0" . $i;
 									echo "<option value='$val'>$val</option>";
@@ -137,9 +135,7 @@
 							<?php
 								for ($i = 0; $i < 60; $i++)
 								{
-									$val = "";
-									$option = "";
-
+									$val = "$i";
 									if ($i < 10)
 										$val = "0" . $i;
 									echo "<option value='$val'>$val</option>";
