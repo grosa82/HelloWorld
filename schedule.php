@@ -80,7 +80,7 @@
 							<?php
 								for ($i = 7; $i < 22; $i++)
 								{
-									$val = "";
+									$val = "$i";
 									$option = "";
 
 									if ($i < 10)
@@ -117,7 +117,7 @@
 							<?php
 								for ($i = 7; $i < 22; $i++)
 								{
-									$val = "";
+									$val = "$i";
 									$option = "";
 
 									if ($i < 10)
