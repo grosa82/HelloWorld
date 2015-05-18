@@ -76,7 +76,38 @@
 						Time begin
 					</td>
 					<td>
-						<input type="text" name="hour_begin" />h&nbsp;&nbsp;<input type="text" name="minute_begin" />m
+						<select name="hour_begin">
+							<?php
+								for ($i = 7; $i < 22; $i++)
+								{
+									$val = "";
+									$option = "";
+
+									if ($i < 10)
+										$val = "0" . $i;
+									if ($i > 12)
+										$option = ($i - 12) . " PM";
+									else
+										$option = $i . " AM";
+									echo "<option value='$val'>$option</option>";
+								}
+							?>
+						</select>
+						h&nbsp;&nbsp;
+						<select name="minute_begin">
+							<?php
+								for ($i = 0; $i < 60; $i++)
+								{
+									$val = "";
+									$option = "";
+
+									if ($i < 10)
+										$val = "0" . $i;
+									echo "<option value='$val'>$val</option>";
+								}
+							?>
+						</select>
+						m
 					</td>
 				</tr>
 				<tr>
@@ -84,7 +115,38 @@
 						Time end
 					</td>
 					<td>
-						<input type="text" name="hour_end" />h&nbsp;&nbsp;<input type="text" name="minute_end" />m
+						<select name="hour_end">
+							<?php
+								for ($i = 7; $i < 22; $i++)
+								{
+									$val = "";
+									$option = "";
+
+									if ($i < 10)
+										$val = "0" . $i;
+									if ($i > 12)
+										$option = ($i - 12) . " PM";
+									else
+										$option = $i . " AM";
+									echo "<option value='$val'>$option</option>";
+								}
+							?>
+						</select>
+						h&nbsp;&nbsp;
+						<select name="minute_end">
+							<?php
+								for ($i = 0; $i < 60; $i++)
+								{
+									$val = "";
+									$option = "";
+
+									if ($i < 10)
+										$val = "0" . $i;
+									echo "<option value='$val'>$val</option>";
+								}
+							?>
+						</select>
+						m
 					</td>
 				</tr>
 				<tr>
