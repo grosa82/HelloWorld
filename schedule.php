@@ -3,72 +3,31 @@
 	$color = array("#00A0B1", "#2E8DEF", "#A700AE", "#643EBF", "#BF1E4B", "#DC572E", "#00A600", "#0A5BC4");
 ?>
 
-<style>
-.week{
-	display: inline-block;
-	width: 750px; 
-	height: 480px; 
-	background-color: #f3f3f3;
-	position: relative;
-}
-.weekday{
-	width: 100px;
-	height: 480px;
-	border: 1px solid #d3d3d3;
-	float: left;
-	position: relative;
-	vertical-align: text-top;
-	color: gray;
-	text-align: center;
-}
-.hours{
-	width: 50px;
-	height: 480px;
-	float: left;
-	position: relative;
-	background-color: white;
-}
-.hour{
-	width: 50px;
-	height: 20px;
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	font-size: 10px;
-	color: black;
-	text-align: center;
-	vertical-align: middle;	
-}
-.course{
-	width: 98px;
-	position: absolute;
-	left: 0px;
-	font-size: 10px;
-	color: white;
-	font-weight: bold;
-	border-radius: 6px;
-	border: 1px solid white;
-}
-.conflict{
-	opacity: 0.8;
-	border: 3px dotted black;
-	cursor: help;
-	border-radius: 6px;
-	background-image: url('alert.png');
-    background-repeat: no-repeat;
-    background-position: bottom; 	
-}
-.line{
-	width: 750px;
-	position: absolute;
-	left: 0px;
-	border-top: 1px dashed #d3d3d3;
-	height: 1px;
-}
-</style>
+<link rel="stylesheet" href="schedule.css" />
 
 <div class="page-header">
-	<h2>Week Schedule</h2>
+	<h2>New courses</h2>
+</div>
+
+<div class="row">
+	<form action="schedule.cpp" method="post">
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						Course name
+					</td>
+					<td>
+						<input type="text" name="name" />
+					</td>
+				</tr>
+			</tbody>
+		</table>	
+	</form>
+</div>
+
+<div class="page-header">
+	<h2>Week schedule</h2>
 </div>
 
 <div class="week">
