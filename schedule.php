@@ -229,7 +229,7 @@
 
             	$courses = array();
 
-            	$stmt = $pdo->prepare("SELECT name, code, section, time_begin, time_end, weekday FROM testdb.course where id_user = :id_user");
+            	$stmt = $pdo->prepare("SELECT name, code, section, time_begin, time_end, weekday FROM course where id_user = :id_user");
 				$stmt->bindValue(':id_user', $user_id, PDO::PARAM_INT);
 				
 				$stmt->execute();
