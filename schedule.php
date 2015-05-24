@@ -198,7 +198,7 @@
 					</td>
 				</tr>
 				<td colspan="2">
-					<button type="submit">Add course</button>
+					<button class="btn btn-primary" type="submit">Add course</button>
 				</td>
 			</tbody>
 		</table>
