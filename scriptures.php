@@ -34,7 +34,7 @@
 		$stmt = $pdo->prepare("SELECT id, book, chapter, verse, content FROM Scriptures order by book");
 	else
 	{
-		$stmt = $pdo->prepare("SELECT id, book, chapter, verse, content FROM Scriptures where book = ':book' order by book");
+		$stmt = $pdo->prepare("SELECT id, book, chapter, verse, content FROM Scriptures where book = :book order by book");
 		$stmt->bindValue(':book', $book, PDO::PARAM_STR);
 	}
 
