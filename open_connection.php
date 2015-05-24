@@ -5,7 +5,7 @@
 	$port = getenv('OPENSHIFT_MYSQL_DB_PORT');
 	$dbname = getenv('OPENSHIFT_APP_NAME');
 
-	echo "<p>".$servername."|".$username."|".$password."|".$port."|".$dbname."</p>";
+	echo phpinfo();
 
 	try 
 	{
