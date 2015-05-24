@@ -3,14 +3,16 @@
 	$username = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
 	$password = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
 	$port = getenv('OPENSHIFT_MYSQL_DB_PORT');
-	$dbname = "php";
+	$dbname = getenv('OPENSHIFT_APP_NAME');
 
-	// Create connection
-	$conn = new mysqli($servername, $username, $password, $dbname, $port);
-
-	// Check connection
-	if ($conn->connect_error) {
-	    die("Connection failed: " . $conn->connect_error);
+	try 
+	{
+    	$pdo = new PDO("mysql:host=".$servername.";dbname=".$dbname.";port=".$port, $username, $password);
+    	$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    	$pdo->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+	} 
+	catch(PDOException $err) 
+	{
+    	die($err->getMessage());
 	}
-
 ?>

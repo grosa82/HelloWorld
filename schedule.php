@@ -1,6 +1,6 @@
 <?php
 	include "header.php";
-	$color = array("#00A0B1", "#2E8DEF", "#A700AE", "#643EBF", "#BF1E4B", "#DC572E", "#00A600", "#0A5BC4");
+	include "functions.php";
 
 	// get user id
 	$user_id = $SESSION["id_user"];
@@ -38,11 +38,18 @@
 	  			$weekday_val = implode("", $weekday);
 				include "open_connection.php";
 
-				$sql = "insert into course (code, id_user, name, section, time_begin,"
-					." time_end, weekday) values ('$code', '$user_id', '$name', '$section',"
-					." '$begin_time', '$end_time', '$weekday_val')";
+				$stmt = $pdo->prepare("insert into course (code, id_user, name, section, time_begin,"
+					." time_end, weekday) values (:code, :user_id, :name, :section,"
+					." :begin_time, :end_time, :weekday_val)");
+				$stmt->bindValue(':code', $code, PDO::PARAM_STR);
+				$stmt->bindValue(':user_id', $user_id, PDO::PARAM_INT);
+				$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+				$stmt->bindValue(':section', $section, PDO::PARAM_INT);
+				$stmt->bindValue(':begin_time', $begin_time, PDO::PARAM_STR);
+				$stmt->bindValue(':end_time', $end_time, PDO::PARAM_STR);
+				$stmt->bindValue(':weekday_val', $weekday_val, PDO::PARAM_STR);
 
-				if ($conn->query($sql) === TRUE) {
+				if ($stmt->execute()) {
 		    		echo "<h2><span class='label label-success'>Course added successfully</span></h2>";
 
 		    		unset($name);
@@ -55,7 +62,7 @@
 		    		unset($weekday);
 
 				} else {
-					echo "<h2><span class='label label-danger'>Error: " . $sql . "<br>" . $conn->error . "</span></h2>";
+					echo "<h2><span class='label label-danger'>Error executing query</span></h2>";
 				}
 
 				include "close_connection.php";	
@@ -204,6 +211,59 @@
 </div>
 
 <div class="row">
+	<table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Course Name</th>
+                <th>Code</th>
+                <th>Section</th>
+                <th>Start</th>
+                <th>End</th>
+                <th>Days</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+            	include "course.php";
+            	include "open_connection.php";
+
+            	$courses = array();
+
+            	$stmt = $pdo->prepare("SELECT name, code, section, time_begin, time_end, weekday FROM testdb.course where id_user = :id_user");
+				$stmt->bindValue(':id_user', $user_id, PDO::PARAM_INT);
+				
+				$stmt->execute();
+
+				$color_id = 0;
+				
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+
+					$course = new Course();
+					$course->id = $row["id"];
+					$course->name = $row["name"];
+					$course->code = $row["code"];
+					$course->section = $row["section"];
+					$course->time_begin = $row["time_begin"];
+					$course->time_end = $row["time_end"];
+					$course->weekday = $row["weekday"];
+					$course->color = getColor($color_id);
+
+	    			print "<tr><td>".$course->name."</td><td>".$course->code."</td><td>".
+   						$course->section."</td><td>".$course->time_begin."</td>".
+   						"<td>".$course->time_end."</td><td>".getWeekDays($course->weekday)."</td></tr>";
+
+	    			$courses[] = $course;
+
+	    			if ($color_id == 7)
+	    				$color_id = 0;
+	    			else
+	    				$color_id++;
+	    		}
+
+	    		include "close_connection.php";
+            ?>
+        </tbody>
+    </table>
 </div>
 
 <div class="page-header">
@@ -224,9 +284,30 @@
 			}
 		?>
 	</div>
-	<div class="weekday">
-		Sunday
-	</div>
+
+	<?php
+		// weekdays
+		for ($i = 1; $i <= 7; $i++)
+		{
+			echo "<div class='weekday'>".getWeekDay($i)."\n";
+			// courses
+			foreach ($courses as $key => $value) {
+				// calculate size of the box
+				$to_time = strtotime($value->time_end);
+				$from_time = strtotime($value->time_begin);
+				$minutes = round(($to_time - $from_time) / 60, 0);
+				$height = round($minutes / 2, 0);
+				$hour = intval(date('H', $from_time)) - 6;
+				$minute = intval(date('i', $from_time));
+				$top = ($hour * 30) + (round(($minute / 60) * 30, 0));
+
+				if ($value->hasOnThisDay($i))
+					echo "<div class='course' style='height: ".$height."px; top: ".$top."px; background-color: ".$value->color."'>".$value->code."</div>";		
+			}
+			echo "</div>";
+		}
+	?>
+	<!--
 	<div class="weekday">
 		Monday
 		<div class="course" style="height: 30px; top: 90px; background-color: <?php echo $color[0] ?>">CS308</div>
@@ -257,6 +338,8 @@
 	<div class="weekday">
 		Saturday
 	</div>
+	-->
+
 </div>
 
 <?php
