@@ -1,5 +1,7 @@
 <?php session_start(); 
-    error_reporting(22527);
+    ini_set('display_errors','On'); 
+    ini_set('error_reporting','E_ALL | E_STRICT'); 
+    error_reporting(E_ALL);
 ?>
 <!DOCTYPE html>
 
