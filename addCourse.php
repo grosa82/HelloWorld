@@ -1,11 +1,8 @@
 <?php
+	session_start();
 	header('Content-type: application/json');
 	include "functions.php";
-
-	class Message {
-	    public $success = false;
-	    public $content = "";
-	}
+	include "scheduleClasses.php";
 
 	// creates an object to store the final message
 	$message = new Message();

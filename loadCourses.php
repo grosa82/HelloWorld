@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	header('Content-type: application/json');
 	include "scheduleClasses.php";
    	include "functions.php";

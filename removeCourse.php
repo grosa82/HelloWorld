@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	header('Content-type: application/json');
 	include "open_connection.php";
 	include "functions.php";

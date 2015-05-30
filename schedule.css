@@ -69,3 +69,9 @@
 .msg{
 	font-size: 19px;
 }
+.small{
+	width: 150px;
+}
+.big {
+	width: 300px;
+}

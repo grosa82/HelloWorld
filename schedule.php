@@ -1,9 +1,14 @@
 <?php
 	include "header.php";
-	include "functions.php";	
+	include "functions.php";
+
+	if (getUserId() == 0)
+		redirect("login.php");
 ?>
 
 <link rel="stylesheet" href="schedule.css" />
+
+<span class="label label-info"><?php echo $_SESSION["name"]; ?></span>&nbsp;&nbsp;<a href="logout.php">Logout</a>
 
 <div class="page-header">
 	<h2>New course</h2>
@@ -15,15 +20,15 @@
 			<tbody>
 				<tr>
 					<td style="width: 140px;">Course name</td>
-					<td><input type="text" id="name" name="name" /></td>
+					<td><input type="text" id="name" name="name" class="form-control big" /></td>
 				</tr>
 				<tr>
 					<td>Course code</td>
-					<td><input type="text" id="code" name="code" /></td>
+					<td><input type="text" id="code" name="code" class="form-control small" /></td>
 				</tr>
 				<tr>
 					<td>Course section</td>
-					<td><input type="text" id="section" name="section" /></td>
+					<td><input type="text" id="section" name="section" class="form-control small" /></td>
 				</tr>
 				<tr>
 					<td>Time begin/end</td>

@@ -13,7 +13,7 @@
 		if (isset($_SESSION["user"]))
 			return (int)$_SESSION["user"];
 		else
-			return 1;
+			return 0;
 	}
 	function setUserId($id)
 	{
