@@ -44,13 +44,14 @@
 	border: 1px solid white;
 }
 .conflict{
-	opacity: 0.8;
+	opacity: 0.6;
 	border: 3px dotted black;
 	cursor: help;
 	border-radius: 6px;
 	background-image: url('alert.png');
     background-repeat: no-repeat;
     background-position: bottom; 	
+    background-color: red;
 }
 .line{
 	width: 750px;
@@ -58,4 +59,13 @@
 	left: 0px;
 	border-top: 1px dashed #d3d3d3;
 	height: 1px;
+}
+.delete{
+	cursor: pointer;
+}
+.error{
+	color: red;
+}
+.msg{
+	font-size: 19px;
 }

@@ -6,6 +6,8 @@
     <meta charset="utf-8" />
     <title>Assignment</title>
     <script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"></script>
+    <script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"></script>
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
@@ -25,7 +27,7 @@
             </div>
             <div class="navbar-collapse collapse" id="navbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="index.php">About Me</a></li>
+                    <li><a href="index.php">About Me</a></li>
                     <li class="dropdown">
                         <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Assignments <span class="caret"></span></a>
                         <ul role="menu" class="dropdown-menu">
