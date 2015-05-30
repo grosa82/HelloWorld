@@ -1,6 +1,7 @@
 <?php
 	include "functions.php";	
 
+	$hashAlg = "ripemd160";
 	setUserId(0);
 
 	$action;
@@ -25,7 +26,7 @@
 
 			if ($password == $confirm)
 			{
-				$password = password_hash($password, PASSWORD_DEFAULT);
+				$password = hash($hashAlg, $password);
 				// create a new account
 				$stmt = $pdo->prepare("insert into user (name, email, password) values (:name, :email, :password)");
 				$stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -47,7 +48,7 @@
 		{
 			$email = $_POST["loginEmail"];
 			$password = $_POST["loginPassword"];
-			$password = password_hash($password, PASSWORD_DEFAULT);
+			$password = hash($hashAlg, $password);
 
 			// try to login
 			$stmt = $pdo->prepare("select id, name from user where email = :email and password = :password");
