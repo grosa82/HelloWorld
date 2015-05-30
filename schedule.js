@@ -11,6 +11,10 @@ function showMessage(number, msg, success){
 		$("#msg" + number).addClass("label-success");
 	else
 		$("#msg" + number).addClass("label-danger");
+	$("#msg" + number).show();
+	setTimeout( function() { 
+		$("#msg" + number).fadeOut();
+	}, 6000);
 }
 function removeCourse(id) {
 	if (confirm('Are you sure you want to remove this course?')){
