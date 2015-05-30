@@ -1,4 +1,6 @@
-<?php session_start(); ?>
+<?php session_start(); 
+    error_reporting(22527);
+?>
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
