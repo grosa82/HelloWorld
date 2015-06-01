@@ -1,7 +1,7 @@
 <?php
 	include "functions.php";	
+	require "password.php";
 
-	$hashAlg = "ripemd160";
 	setUserId(0);
 
 	$action;
@@ -26,7 +26,7 @@
 
 			if ($password == $confirm)
 			{
-				$password = hash($hashAlg, $password);
+				$password = password_hash($password, PASSWORD_DEFAULT);
 				// create a new account
 				$stmt = $pdo->prepare("insert into user (name, email, password) values (:name, :email, :password)");
 				$stmt->bindValue(':name', $name, PDO::PARAM_STR);
@@ -48,17 +48,18 @@
 		{
 			$email = $_POST["loginEmail"];
 			$password = $_POST["loginPassword"];
-			$password = hash($hashAlg, $password);
 
 			// try to login
-			$stmt = $pdo->prepare("select id, name from user where email = :email and password = :password");
+			$stmt = $pdo->prepare("select id, name, password from user where email = :email");
 			$stmt->bindValue(':email', $email, PDO::PARAM_STR);
-			$stmt->bindValue(':password', $password, PDO::PARAM_STR);
 			$stmt->execute();
 
 			while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-				setUserId($row["id"]); 
-				$_SESSION["name"] = $row["name"];
+				if (password_verify($password, $row["password"]))
+				{
+					setUserId($row["id"]); 
+					$_SESSION["name"] = $row["name"];
+				}
 			}
 
 			if (getUserId() == 0)
