@@ -34,8 +34,10 @@
 				$stmt->bindValue(':password', $password, PDO::PARAM_STR);
 				$stmt->execute();
 
-				if ($stmt)
-					echo "<h2><span class='label label-success'>Account created</span></h2>";	
+				if ($stmt){
+					echo "<h2><span class='label label-success'>Account created, now log in</span></h2>";	
+					$action = "Enter";
+				}
 				else
 					echo "<h2><span class='label label-danger'>Error creating account</span></h2>";	
 			}

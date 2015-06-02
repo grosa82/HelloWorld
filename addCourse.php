@@ -62,6 +62,15 @@
 			$message->success = false;
 		}
 	}
+
+	unset($name);
+	unset($code);
+	unset($section);
+	unset($hour_begin);
+	unset($minute_begin);
+	unset($hour_end);
+	unset($minute_end);
+	unset($weekday);
 	
 	echo json_encode($message);
 ?>

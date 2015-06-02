@@ -17,4 +17,10 @@
 	{
     	die($err->getMessage());
 	}
+
+	unset($servername);
+	unset($username);
+	unset($password);
+	unset($port);
+	unset($dbname);
 ?>
